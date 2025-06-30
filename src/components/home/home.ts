@@ -14,5 +14,5 @@ import { AppState, IBoard } from '../../app/store/app-state.model';
 export class Home {
   private store = inject(Store<AppState>);
 
-  boards$ = this.store.select(state => state.boards.boards);
+  boards$ = this.store.select(state => state.app.boards);
 }

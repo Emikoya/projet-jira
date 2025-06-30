@@ -21,7 +21,7 @@ export class Board implements OnInit, OnDestroy {
   private subscription?: Subscription;
 
   constructor(private store: Store<AppState>) {
-    this.boards$ = this.store.select(state => state.boards);
+    this.boards$ = this.store.select(state => state.app.boards);
   }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class Board implements OnInit, OnDestroy {
     
     // Vérification que boards est bien un tableau
     if (!Array.isArray(boards)) {
-      console.warn('Boards is not an array:', boards);
+      console.warn('Boards is not an array:', boards, typeof boards);
       return [];
     }
     

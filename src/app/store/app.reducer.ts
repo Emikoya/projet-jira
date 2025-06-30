@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { addTask } from './app.actions';
-import { AppState, IBoard, initialState, IList, ITask } from './app-state.model';
+import { BoardState, IBoard, initialState, IList, ITask } from './app-state.model';
 
 
 export const boardsReducer = createReducer(
   initialState,
-  on(addTask, (state, { boardId, listTitle, task }): AppState => {
+  on(addTask, (state, { boardId, listTitle, task }): BoardState => {
     const updatedBoards: IBoard[] = state.boards.map((board): IBoard => {
       if (board.id !== boardId) return board;
 

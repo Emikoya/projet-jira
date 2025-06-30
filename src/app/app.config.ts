@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideStore({
-      boards: boardsReducer
+      app: boardsReducer
     })
   ]
 };

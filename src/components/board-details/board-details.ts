@@ -20,7 +20,7 @@ export class BoardDetails {
   currentBoard$: Observable<Board | undefined>;
 
   constructor() {
-    this.currentBoard$ = this.store.select(state => state.boards).pipe(
+    this.currentBoard$ = this.store.select(state => state.app.boards).pipe(
       map(boards => boards.find((b: { id: string | null; }) => b.id === this.boardId))
     );
   }
