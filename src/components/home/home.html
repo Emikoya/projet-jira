@@ -1,0 +1,9 @@
+<ul *ngIf="boards$ | async as boards">
+  @for (board of boards; track board.id) {
+    <li>
+      <a [routerLink]="['/board', board.id]">
+        {{ board.name }}
+      </a>
+    </li>
+  }
+</ul>

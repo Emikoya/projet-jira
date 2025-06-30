@@ -1,0 +1,16 @@
+<h1>{{currentBoardName()}}</h1>
+
+<!-- Debug temporaire -->
+<div style="background: #f0f0f0; padding: 10px; margin: 10px 0;">
+  <h3>Debug - Lists:</h3>
+  <pre>{{ lists() | json }}</pre>
+  <h3>Debug - Board ID:</h3>
+  <p>{{ boardId() }}</p>
+</div>
+
+@for (list of lists(); track trackList($index, list)) {
+    <app-list
+    [title]="list.title"
+    [tasks]="list.tasks"
+    (taskAdded)="onTaskAdded(list, $event)"></app-list>
+}

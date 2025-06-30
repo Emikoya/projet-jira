@@ -1,0 +1,40 @@
+<h2>{{title()}}</h2>
+<form (ngSubmit)="addTask()" class="ajout-task">
+  <div class="form-group">
+    <label for="title">Titre :</label>
+    <input type="text" id="title"name="title" required minlength="3" [(ngModel)]="formData.title" #titleCtrl="ngModel" placeholder="Titre" />
+    @if(titleCtrl.invalid && titleCtrl.touched){
+      @if (titleCtrl.errors?.['required']) {
+        <small class="error">Le titre est requis.</small>
+      }
+      @if (titleCtrl.errors?.['minlength']){
+        <small class="error">Minimum 3 caractères.</small>
+      }
+    }
+  </div>
+  
+  <div class="form-group">
+    <label for="libelle">Libellé :</label>
+    <input type="text" id="libelle"name="libelle" required minlength="3" [(ngModel)]="formData.libelle" #libelleCtrl="ngModel" placeholder="Libellé" />
+    @if(libelleCtrl.invalid && libelleCtrl.touched){
+      @if (libelleCtrl.errors?.['required']) {
+        <small class="error">Le libellé est requis.</small>
+      }
+      @if (libelleCtrl.errors?.['minlength']){
+        <small class="error">Minimum 3 caractères.</small>
+      }
+    }
+  </div>
+  
+  <button type="submit" [disabled]="titleCtrl.invalid || libelleCtrl.invalid">
+    Ajouter
+  </button>
+</form>
+
+@if ((tasks() ?? []).length > 0) {
+  @for (task of tasks(); track task.title + task.libelle) {
+    <app-task [task]="task"></app-task>
+  }
+} @else {
+  <p>Aucune tâche.</p>
+}
