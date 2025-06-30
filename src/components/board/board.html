@@ -1,11 +1,14 @@
-<h1 class="text-xl font-semibold text-amber-900 mb-2">{{currentBoardName()}}</h1>
+<h1 class="text-3xl font-semibold text-amber-900 mb-4">{{currentBoardName()}}</h1>
 
-
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-5xl w-full justify-items-center">
+<div class="flex items-center justify-center bg-amber-50 px-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl w-full justify-items-center">
     @for (list of lists(); track trackList($index, list)) {
-        <app-list class="m-2 p-3 border-2 border-dashed border-amber-400 rounded-lg bg-amber-100"
+      <app-list
+        class="m-2 p-3 border-2 border-dashed border-amber-400 rounded-lg bg-amber-100"
         [title]="list.title"
         [tasks]="list.tasks"
-        (taskAdded)="onTaskAdded(list, $event)"></app-list>
+        (taskAdded)="onTaskAdded(list, $event)"
+      ></app-list>
     }
+  </div>
 </div>

@@ -1,50 +1,61 @@
-<div>
-  <h2 class="font-medium text-amber-900 truncate">{{title()}}</h2>
-  <div class="flex flex-row">
-    <form (ngSubmit)="addTask()">
-      <div class="form-group">
-        <label for="title">Titre :</label>
-        <input type="text" id="title"name="title" required minlength="3" [(ngModel)]="formData.title" #titleCtrl="ngModel" placeholder="Titre" />
-        @if(titleCtrl.invalid && titleCtrl.touched){
-          @if (titleCtrl.errors?.['required']) {
-            <small class="error">Le titre est requis.</small>
-          }
-          @if (titleCtrl.errors?.['minlength']){
-            <small class="error">Minimum 3 caractères.</small>
-          }
-        }
-      </div>
-    
-      <div class="form-group">
-        <label for="libelle">Libellé :</label>
-        <input type="text" id="libelle"name="libelle" required minlength="3" [(ngModel)]="formData.libelle" #libelleCtrl="ngModel" placeholder="Libellé" />
-        @if(libelleCtrl.invalid && libelleCtrl.touched){
-          @if (libelleCtrl.errors?.['required']) {
-            <small class="error">Le libellé est requis.</small>
-          }
-          @if (libelleCtrl.errors?.['minlength']){
-            <small class="error">Minimum 3 caractères.</small>
-          }
-        }
-      </div>
-    
-      <button type="submit" [disabled]="titleCtrl.invalid || libelleCtrl.invalid"
-      class="w-full p-3 border-2 border-dashed border-emerald-400 rounded-lg text-emerald-700 hover:border-emerald-500 hover:bg-emerald-100 transition-colors text-sm font-medium">
-        Ajouter
-      </button>
-    </form>
-  </div>
-  
+<h2 class="font-medium text-amber-900 truncate m-4">{{title()}}</h2>
+<div class="flex justify-center">
+  <form (ngSubmit)="addTask()" class="bg-amber-50 p-1 rounded-lg shadow-md w-full">
+    <div class="flex flex-col md:flex-row gap-4 mb-4">
 
-  <div class="flex-1 space-y-3 min-h-96">
-      @if ((tasks() ?? []).length > 0) {
-        @for (task of tasks(); track task.title + task.libelle) {
-          <app-task [task]="task"></app-task>
+      <div class="flex-1">
+        <label for="title" class="block mb-1 font-medium text-sm text-amber-800">Titre :</label>
+        <input type="text" id="title" name="title" required minlength="3" [(ngModel)]="formData.title" #titleCtrl="ngModel"
+          class="w-full border border-amber-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+        />
+      </div>
+
+      <div class="flex-1">
+        <label for="libelle" class="block mb-1 font-medium text-sm text-amber-800">Libellé :</label>
+        <input type="text" id="libelle" name="libelle" required minlength="3" [(ngModel)]="formData.libelle" #libelleCtrl="ngModel"
+          class="w-full border border-amber-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400"
+        />
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="titleCtrl.invalid || libelleCtrl.invalid"
+      class="w-full p-3 border-2 border-dashed border-emerald-400 rounded-lg text-emerald-700 hover:border-emerald-500 hover:bg-emerald-100 transition-colors text-sm font-medium mb-3"
+    >
+      Ajouter
+    </button>
+
+    <!-- Erreurs sous le bouton -->
+    <div class="text-sm text-red-600 space-y-1">
+      @if(titleCtrl.invalid && titleCtrl.touched){
+        @if (titleCtrl.errors?.['required']) {
+          <div>Le titre est requis.</div>
         }
-      } @else {
-        <p>Aucune tâche.</p>
+        @if (titleCtrl.errors?.['minlength']){
+          <div>Minimum 3 caractères pour le titre.</div>
+        }
       }
-  </div>
 
+      @if(libelleCtrl.invalid && libelleCtrl.touched){
+        @if (libelleCtrl.errors?.['required']) {
+          <div>Le libellé est requis.</div>
+        }
+        @if (libelleCtrl.errors?.['minlength']){
+          <div>Minimum 3 caractères pour le libellé.</div>
+        }
+      }
+    </div>
+    
+  </form>
 </div>
 
+<div class="flex-1 space-y-3 min-h-96">
+    @if ((tasks() ?? []).length > 0) {
+      @for (task of tasks(); track task.title + task.libelle) {
+        <app-task [task]="task"></app-task>
+      }
+    } @else {
+      <p>Aucune tâche.</p>
+    }
+</div>
