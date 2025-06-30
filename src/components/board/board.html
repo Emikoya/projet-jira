@@ -1,16 +1,11 @@
-<h1>{{currentBoardName()}}</h1>
+<h1 class="text-xl font-semibold text-amber-900 mb-2">{{currentBoardName()}}</h1>
 
-<!-- Debug temporaire -->
-<div style="background: #f0f0f0; padding: 10px; margin: 10px 0;">
-  <h3>Debug - Lists:</h3>
-  <pre>{{ lists() | json }}</pre>
-  <h3>Debug - Board ID:</h3>
-  <p>{{ boardId() }}</p>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-w-5xl w-full justify-items-center">
+    @for (list of lists(); track trackList($index, list)) {
+        <app-list class="m-2 p-3 border-2 border-dashed border-amber-400 rounded-lg bg-amber-100"
+        [title]="list.title"
+        [tasks]="list.tasks"
+        (taskAdded)="onTaskAdded(list, $event)"></app-list>
+    }
 </div>
-
-@for (list of lists(); track trackList($index, list)) {
-    <app-list
-    [title]="list.title"
-    [tasks]="list.tasks"
-    (taskAdded)="onTaskAdded(list, $event)"></app-list>
-}

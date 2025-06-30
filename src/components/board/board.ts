@@ -44,9 +44,6 @@ export class Board implements OnInit, OnDestroy {
     const targetBoardId = this.boardId() || '1';
     const boards = this.boardsSignal();
     
-    console.log('Computing lists for board:', targetBoardId); // Debug
-    console.log('Available boards:', boards); // Debug
-    
     // Vérification que boards est bien un tableau
     if (!Array.isArray(boards)) {
       console.warn('Boards is not an array:', boards, typeof boards);

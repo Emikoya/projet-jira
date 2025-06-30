@@ -1,11 +1,15 @@
-<nav class="bg-gray-900 text-white px-4 py-3 rounded-lg shadow">
-  <ul class="flex space-x-6">
-    <li><h1>Projet Jira</h1></li>
-    <li>
-      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="hover:text-gray-300">Accueil</a>
-    </li>
-  </ul>
-</nav>
-
-
-<router-outlet></router-outlet>
+<div class="min-h-screen bg-amber-50 flex flex-col">
+  <nav class="bg-amber-950 flex items-center px-4 py-3 shadow-md">
+    <ul class="flex space-x-6">
+      <li>
+        <span class="font-semibold text-lg mr-2">☕</span>
+      </li>
+      <li>
+        <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="text-lg font-medium text-amber-100 hover:text-emerald-500">Accueil</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="flex flex-col text-center py-12 ">
+    <router-outlet></router-outlet>
+  </div>
+</div>
